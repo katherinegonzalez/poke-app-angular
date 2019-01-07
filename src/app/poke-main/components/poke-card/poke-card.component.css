@@ -1,0 +1,41 @@
+.card-pokemon{
+  margin-bottom: 20px;
+  border-radius: 4.25rem
+}
+
+.img-card-pokemon{
+  background-color: #e2e0e0;
+  border-radius: 4.25rem 4.25rem 0 0;
+  margin: 5px 5px 0px 5px;
+}
+
+.ability-card{
+  background-color: orange;
+  border-radius: 10px;
+  text-align: center;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  font-size: 10px;
+}
+
+.card-pokemon-abilities{
+  text-align: center;
+}
+
+.card-title-pokemon{
+  text-transform: capitalize;
+}
+
+.card-pokemon-icon{
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.card-pokemon-icons{
+  padding-left: 0px;
+  padding-right: 0px;
+}

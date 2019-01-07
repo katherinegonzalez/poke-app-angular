@@ -1,0 +1,5 @@
+<div class="row" id="books">
+    <div *ngFor="let pokemon of pokeList?.results" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <app-poke-card [poke]="pokemon"></app-poke-card>
+    </div>
+  </div>

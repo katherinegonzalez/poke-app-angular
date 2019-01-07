@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyAz2_SNV6ehXxf15I8cQ_vj4mYBsGijGwY',
+    authDomain: 'angular-poke-app.firebaseapp.com',
+    databaseURL: 'https://angular-poke-app.firebaseio.com',
+    projectId: 'angular-poke-app',
+    storageBucket: 'angular-poke-app.appspot.com',
+    messagingSenderId: '197573068283'
+  }
 };
 
 /*
