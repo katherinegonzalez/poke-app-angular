@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --main-style-color: rgba(202, 86, 86, 0.8);
+  --main-style-color: rgba(64, 63, 63,1);
   --main-shadow-color: rgba(0, 0, 0, .4);
   --header-back-color: rgba(215, 219, 224, 1);
   --main-title-color: rgba(255, 255, 255, 1);
@@ -34,6 +34,7 @@ a.link-profile img {
   border-radius: 40px;
 }
 
+
 /** Body Content **/
 
 .body-content {
@@ -48,6 +49,11 @@ div.user-image > img {
 .left-aside {
   box-shadow: 1px 0 2px var(--main-shadow-color);
   padding: 0;
+  display: block;
+}
+
+.left-aside.close {
+  display: none;
 }
 
 .aside-header {

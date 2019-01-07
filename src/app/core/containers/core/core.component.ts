@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoreComponent implements OnInit {
 
+  isSidebarClosed: Boolean = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  clickSidebar(event) {
+    console.log(event);
+    this.isSidebarClosed = event;
   }
 
 }
