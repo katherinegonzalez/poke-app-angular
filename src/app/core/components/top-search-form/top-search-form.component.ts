@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { PokeListService } from '../../../poke-main/services/poke-list.service';
 
 @Component({
   selector: 'app-top-search-form',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopSearchFormComponent implements OnInit {
 
-  constructor() { }
+  @Output() pokemonSearched = new EventEmitter<any>();
+  constructor(private pokeListService: PokeListService) { }
 
   ngOnInit() {
+
   }
+
+  /*searchPokemons(data: string) {
+    this.pokeListService.getPokemon(data).subscribe(
+      result => {
+        this.pokemonSearched.emit(result);
+      }
+    );
+  }*/
 
 }

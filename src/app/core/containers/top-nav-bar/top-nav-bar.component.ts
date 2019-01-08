@@ -9,6 +9,7 @@ export class TopNavBarComponent implements OnInit {
 
   @Output() sidebarClosed = new EventEmitter<boolean>();
   isSidebarClosed: Boolean = false;
+
   constructor() { }
 
   ngOnInit() {

@@ -11,11 +11,16 @@ export class CoreComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(window);
   }
 
   clickSidebar(event) {
     console.log(event);
     this.isSidebarClosed = event;
+  }
+
+  getSearch(event) {
+    console.log(event);
   }
 
 }

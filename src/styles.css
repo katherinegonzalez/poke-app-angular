@@ -3,7 +3,7 @@
 :root {
   --main-style-color: rgba(64, 63, 63,1);
   --main-shadow-color: rgba(0, 0, 0, .4);
-  --header-back-color: rgba(215, 219, 224, 1);
+  --header-back-color: rgb(47, 113, 181, 1);
   --main-title-color: rgba(255, 255, 255, 1);
   --input-border-color: rgba(237, 238, 239, 1);
   --button-border-color: rgba(83, 156, 252, 1);
@@ -44,6 +44,16 @@ a.link-profile img {
 div.user-image > img {
   width: 80px;
   border-radius: 50px;
+  text-align: center;
+}
+
+div.user-image {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+div.user-info {
+  text-align: center;
 }
 
 .left-aside {
