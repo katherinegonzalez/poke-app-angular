@@ -20,6 +20,10 @@ export class PokeListComponent implements OnInit {
   ngOnInit() {
     window.addEventListener('change', this.searchPokemons.bind(this));
 
+    this.getAllPokemons();
+  }
+
+  getAllPokemons() {
     this.pokeService.list().subscribe(
       pokemons => {
         this.pokeList = pokemons;
@@ -29,9 +33,10 @@ export class PokeListComponent implements OnInit {
     );
   }
 
-  searchPokemons(event) {
-    this.pokeService.getPokemon(event.srcElement.value).subscribe(
+  getPokemonSearched (value: string) {
+    this.pokeService.getPokemon(value).subscribe(
       pokemon => {
+        console.log(pokemon);
         const pokeResult = [];
         const poke = {
           name: pokemon.name,
@@ -41,6 +46,14 @@ export class PokeListComponent implements OnInit {
         this.pokemons = pokeResult;
       }
     );
+  }
+  searchPokemons(event) {
+
+    if (event.srcElement.value === '' || event.srcElement.value === null || event.srcElement.value === undefined) {
+      this.getAllPokemons();
+    } else {
+      this.getPokemonSearched(event.srcElement.value.toLowerCase());
+    }
   }
 
 
