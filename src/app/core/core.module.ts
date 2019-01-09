@@ -12,6 +12,7 @@ import { MainMenuComponent } from './components/main-menu/main-menu.component';
 
 import { routes } from './routes.core';
 import { DetailPokemonComponent } from './containers/detail-pokemon/detail-pokemon.component';
+import { AlertsModule } from '../alerts/alerts.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,11 @@ import { DetailPokemonComponent } from './containers/detail-pokemon/detail-pokem
     DetailPokemonComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    AlertsModule
+  ],
+  exports: [
+    CoreComponent
   ]
 })
 export class CoreModule { }
