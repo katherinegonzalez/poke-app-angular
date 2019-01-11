@@ -13,6 +13,7 @@ export class PokeListComponent implements OnInit {
 
   pokeList: IPokeList;
   pokemons: IPokemon[];
+  message: string;
 
 
   constructor( private pokeService: PokeListService) { }
@@ -26,9 +27,14 @@ export class PokeListComponent implements OnInit {
   getAllPokemons() {
     this.pokeService.list().subscribe(
       pokemons => {
-        this.pokeList = pokemons;
-        this.pokeList.results = pokemons.results.slice(0, 20);
-        this.pokemons = this.pokeList.results;
+        if (pokemons) {
+          this.pokeList = pokemons;
+          this.pokeList.results = pokemons.results.slice(0, 20);
+          this.pokemons = this.pokeList.results;
+        } else {
+          this.pokemons = [];
+          this.message = 'En este momento no hay pokemons para mostrar, intente mas tarde';
+        }
       }
     );
   }
@@ -37,13 +43,18 @@ export class PokeListComponent implements OnInit {
     this.pokeService.getPokemon(value).subscribe(
       pokemon => {
         console.log(pokemon);
-        const pokeResult = [];
-        const poke = {
-          name: pokemon.name,
-          url: ''
-        };
-        pokeResult.push(poke);
-        this.pokemons = pokeResult;
+        if (pokemon) {
+          const pokeResult = [];
+          const poke = {
+            name: pokemon.name,
+            url: ''
+          };
+          pokeResult.push(poke);
+          this.pokemons = pokeResult;
+        } else {
+          this.pokemons = [];
+          this.message = 'No se encontraron pokemons con este nombre';
+        }
       }
     );
   }
