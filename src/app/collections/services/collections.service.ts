@@ -35,6 +35,11 @@ export class CollectionsService {
       return promise;
     }
 
+    editCollection(key: string, collection: Collection): any {
+      const promise = this.collectionsRef.update(key, collection);
+      return promise;
+    }
+
     listCollections(): Observable<any[]> {
       return this.collectionsRef.snapshotChanges().
         pipe(map(items => {            // <== way of chaining

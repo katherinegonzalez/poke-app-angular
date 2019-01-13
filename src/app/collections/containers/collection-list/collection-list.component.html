@@ -4,20 +4,35 @@
 </div>
 <button (click)="open(content)" class="btn btn-primary pull-right btn-create-collection">+ Crear Colección</button>
 
-  <ng-template #content let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title">Modal title</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <app-collection-create (closeModal)= "closeModal($event)" ></app-collection-create>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-      </div>
-    </ng-template>
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-collection-create [typeForm]="'create'" (closeModal)= "closeModal($event)" ></app-collection-create>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
+
+<ng-template #contentEdit let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-collection-create [typeForm]="'edit'" [selectedCollection]="selectedCollection" (closeModal)= "closeModal($event)" ></app-collection-create>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
 
 <table class="table">
   <thead>
@@ -35,7 +50,7 @@
       <td>{{collecion?.data?.descriptionCollection}}</td>
       <td>
         <a [routerLink]="['../collection', collecion?.data?.nameCollection]" class="btn btn-success btn-sm btn-detail-collection"><i class="fa fa-eye"></i></a>
-        <button class="btn btn-primary btn-sm btn-edit-collection"><i class="fa fa-pencil"></i></button>
+        <button  (click)="editSelectedCollection(collecion, contentEdit)"  class="btn btn-primary btn-sm btn-edit-collection"><i class="fa fa-pencil"></i></button>
         <button class="btn btn-danger btn-sm "><i class="fa fa-trash"></i></button>
       </td>
 

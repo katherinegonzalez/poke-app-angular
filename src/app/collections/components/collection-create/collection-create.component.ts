@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PokeListService } from '../../../poke-main/services/poke-list.service';
@@ -19,6 +19,7 @@ export class CollectionCreateComponent implements OnInit {
   pokemons: IPokemon[];
   collections: Collection[] = [];
 
+
   collectionForm = this.formBuilder.group({
     nameCollection: ['', Validators.required],
     descriptionCollection: ['', Validators],
@@ -26,6 +27,10 @@ export class CollectionCreateComponent implements OnInit {
   });
 
   @Output() closeModal = new EventEmitter<boolean>();
+  @Input() typeForm: string;
+  @Input() selectedCollection: any;
+
+  collection: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,6 +40,15 @@ export class CollectionCreateComponent implements OnInit {
 
   ngOnInit() {
     this.getAllPokemons();
+
+    if (this.typeForm === 'edit') {
+      if (this.selectedCollection) {
+        this.collection = this.selectedCollection;
+        this.collectionForm.controls['nameCollection'].setValue(this.collection.data.nameCollection);
+        this.collectionForm.controls['descriptionCollection'].setValue(this.collection.data.descriptionCollection);
+        this.collectionForm.controls['pokemonsCollection'].setValue(this.collection.data.pokemonsCollection);
+      }
+    }
   }
 
   getAllPokemons() {
@@ -52,15 +66,40 @@ export class CollectionCreateComponent implements OnInit {
   }
 
   submit(event: Collection) {
+    console.log(event);
+
+    switch (this.typeForm) {
+      case 'create':
+        this.createCollection();
+      break;
+      case 'edit':
+        this.editCollection(event);
+      break;
+    }
+  }
+
+  createCollection() {
     console.log(this.collectionForm.value);
     this.collecionsService.addCollection(this.collectionForm.value)
-    .then(_ => {
-      this.alertMessage.message({msg: 'La colección ' + this.collectionForm.value.nameCollection + ' ha sido creada exitosamente',
-        type: 'success'});
-      this.closeModal.emit(true);
-    }, (error) => {
-      this.alertMessage.message({msg: 'No fue posible crear la colección ' + this.collectionForm.value.name, type: 'error'});
-    });
+      .then(_ => {
+        this.alertMessage.message({msg: 'La colección ' + this.collectionForm.value.nameCollection + ' ha sido creada exitosamente',
+          type: 'success'});
+        this.closeModal.emit(true);
+      }, (error) => {
+        this.alertMessage.message({msg: 'No fue posible crear la colección ' + this.collectionForm.value.name, type: 'error'});
+      });
+  }
+
+  editCollection() {
+    console.log(this.collectionForm.value);
+    this.collecionsService.editCollection(this.collection.key, this.collectionForm.value)
+      .then(_ => {
+        this.alertMessage.message({msg: 'La colección ' + this.collectionForm.value.nameCollection + ' ha sido editada exitosamente',
+          type: 'success'});
+        this.closeModal.emit(true);
+      }, (error) => {
+        this.alertMessage.message({msg: 'No fue posible editar la colección ' + this.collectionForm.value.name, type: 'error'});
+      });
   }
 
 }

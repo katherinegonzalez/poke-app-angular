@@ -14,6 +14,8 @@ export class CollectionListComponent implements OnInit {
   closeResult: string;
   collections: any[];
 
+  selectedCollection: string;
+
   constructor(
     private modalService: NgbModal,
     private collectionsService: CollectionsService) { }
@@ -52,6 +54,11 @@ export class CollectionListComponent implements OnInit {
         this.collections = collections;
       }
     );
+  }
+
+  editSelectedCollection(collection: any, content: any) {
+    this.selectedCollection = collection;
+    this.modalService.open(content);
   }
 
 }
