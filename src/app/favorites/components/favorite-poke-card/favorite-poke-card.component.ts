@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {PokeListService} from '../../../poke-main/services/poke-list.service';
 import { IPokemon } from '../../../poke-main/models/interfaces/pokemon';
+import { MessagesService } from 'src/app/alerts/services/messages.service';
+
 
 @Component({
   selector: 'app-favorite-poke-card',
@@ -21,13 +23,20 @@ export class FavoritePokeCardComponent implements OnInit {
     this._poke = result;
   }
 
-  constructor(private pokeService: PokeListService) { }
+  constructor(
+    private pokeService: PokeListService,
+    private alertMessage: MessagesService) { }
 
   ngOnInit() {
   }
 
   removeFavorite(pokemon) {
-    this.pokeService.removeFavorite(pokemon);
+    this.pokeService.removeFavorite(pokemon.key, pokemon.data.name)
+    .then(_ => {
+      this.alertMessage.message({msg: 'Has quitado a ' + pokemon.data.name + ' de favoritos', type: 'success'});
+    }).catch(error => {
+      this.alertMessage.message({msg: 'No fue posible quitar a ' + pokemon.data.name + ' de favoritos', type: 'error'});
+    });
   }
 
 }

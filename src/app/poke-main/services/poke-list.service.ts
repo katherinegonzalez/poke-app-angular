@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import {Pokemon} from '../../pokemon';
 import { IPokeList } from '../models/interfaces/poke-list';
@@ -54,18 +55,33 @@ export class PokeListService {
     );
   }
 
-  addFavorite(pokemon: any) {
+  addFavorite(pokemon: any): any {
     const promise = this.favsRef.push(pokemon);
-    promise.then(_ => {
+    return promise;
+    /*promise.then(_ => {
       this.alertMessage.message({msg: pokemon.name + ' ha sido agregado a favoritos', type: 'success'});
-    });
+    });*/
   }
 
-  removeFavorite(pokemon: any) {
-    const promise = this.favsRef.remove(pokemon.key);
-    promise.then(_ => {
-      this.alertMessage.message({msg: 'Has quitado a ' + pokemon.data.name + ' de favoritos', type: 'success'});
-    });
+
+  removeFavorite(key: string, name: string): any {
+    const promise = this.favsRef.remove(key);
+    return promise;
+  }
+
+  searchPokemonFavorite(pokemon: any): Observable<any[]> {
+    const userLocalstorage = JSON.parse(localStorage.getItem('angularPokeApp')).user;
+    const resultQuery = this.rdbFire.list(`favorites/${userLocalstorage.uid}`,
+    ref => ref.orderByChild('name').equalTo(pokemon.name));
+    return resultQuery.snapshotChanges().
+      pipe(map(items => {            // <== new way of chaining
+      return items.map(a => {
+        const data = a.payload.val();
+        const key = a.payload.key;
+        return {key, data};           // or {key, ...data} in case data is Obj
+      });
+    }));
+
   }
 
   private handleError<T>(operation = 'operation', results?: T) {

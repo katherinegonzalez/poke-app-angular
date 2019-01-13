@@ -12,11 +12,19 @@
               <h5 class="card-title card-title-pokemon align-middle">{{_poke?.name}}</h5>
           </div>
 
-          <div class="col-4 card-pokemon-icons">
-
-              <img class="card-pokemon-icon" (click)="addFavorite(_poke)" src="../../../../assets/img/favorite_border_black.png" alt="añadir a favorito">
-              <img class="card-pokemon-icon"src="../../../../assets/img/pokeball.png" alt="añadir a colección">
+          <div class="row card-pokemon-icons">
+              <div class="card-pokemon-icon favorite" *ngIf="_poke?.isFavorite === true">
+                  <img  (click)="removeFavorite(_poke)" src="../../../../assets/img/favorite_black.png" alt="añadir a favorito">
+              </div>
+              <div class="card-pokemon-icon favorite" *ngIf="_poke?.isFavorite === false">
+                  <img (click)="addFavorite(_poke)" src="../../../../assets/img/favorite_border_black.png" alt="añadir a favorito">
+              </div>
+              <div class="card-pokemon-icon">
+                  <img src="../../../../assets/img/pokeball.png" alt="añadir a colección">
+              </div>
           </div>
+
+
       </div>
 
       <div class="card-pokemon-abilities">
