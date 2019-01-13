@@ -20,10 +20,9 @@
                   <img (click)="addFavorite(_poke)" src="../../../../assets/img/favorite_border_black.png" alt="añadir a favorito">
               </div>
               <div class="card-pokemon-icon">
-                  <img src="../../../../assets/img/pokeball.png" alt="añadir a colección">
+                  <img (click)="open(contentAddToCollection)" src="../../../../assets/img/pokeball.png" alt="añadir a colección">
               </div>
           </div>
-
 
       </div>
 
@@ -34,4 +33,19 @@
       </div>
       </div>
 </div>
+
+<ng-template #contentAddToCollection let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Agregar pokemón a una Colección</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <app-poke-add-to-collection [selectedPokemon]="_poke?.name" (closeModal)= "modal.close('Close click')" ></app-poke-add-to-collection>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>
 

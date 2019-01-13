@@ -40,6 +40,10 @@ export class CollectionsService {
       return promise;
     }
 
+    addPokemonToCollection(key: string, pokemon: string, collection: any): any {
+      const promise = this.collectionsRef.update(key, {pokemonsCollection: collection.pokemonsCollection.push(pokemon)});
+      return promise;
+    }
     removeCollection(key: string): any {
       const promise = this.collectionsRef.remove(key);
       return promise;

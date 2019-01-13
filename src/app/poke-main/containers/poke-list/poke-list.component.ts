@@ -59,11 +59,12 @@ export class PokeListComponent implements OnInit {
     );
   }
   searchPokemons(event) {
-
-    if (event.srcElement.value === '' || event.srcElement.value === null || event.srcElement.value === undefined) {
-      this.getAllPokemons();
-    } else {
-      this.getPokemonSearched(event.srcElement.value.toLowerCase());
+    if (event.target.id === 'searchPokemon') {
+      if (event.srcElement.value === '' || event.srcElement.value === null || event.srcElement.value === undefined) {
+        this.getAllPokemons();
+      } else {
+        this.getPokemonSearched(event.srcElement.value.toLowerCase());
+      }
     }
   }
 

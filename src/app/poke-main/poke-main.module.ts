@@ -6,11 +6,15 @@ import { routes } from './routes.poke';
 import { PokeDetailComponent } from './containers/poke-detail/poke-detail.component';
 import { PokeCardComponent } from './components/poke-card/poke-card.component';
 import { PokeInfoComponent } from './components/poke-info/poke-info.component';
+import { PokeAddToCollectionComponent } from './components/poke-add-to-collection/poke-add-to-collection.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [PokeListComponent, PokeDetailComponent, PokeCardComponent, PokeInfoComponent],
+  declarations: [PokeListComponent, PokeDetailComponent, PokeCardComponent, PokeInfoComponent, PokeAddToCollectionComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule.forChild(routes)
   ]
 })

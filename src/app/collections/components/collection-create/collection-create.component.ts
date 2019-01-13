@@ -66,14 +66,12 @@ export class CollectionCreateComponent implements OnInit {
   }
 
   submit(event: Collection) {
-    console.log(event);
-
     switch (this.typeForm) {
       case 'create':
         this.createCollection();
       break;
       case 'edit':
-        this.editCollection(event);
+        this.editCollection();
       break;
     }
   }

@@ -1,0 +1,12 @@
+<form [formGroup]="addTocollectionForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <input type="text" style="display: none" class="form-control" formControlName="namePokemon" id="namePokemon" aria-describedby="nameCollection" placeholder="Name">
+    </div>
+    <div class="form-group">
+        <label for="collectionVal"></label>
+        <select class="form-control" formControlName="collectionVal" id="collectionVal">
+          <option [ngValue]="collection" *ngFor="let collection of collections">{{collection?.data?.nameCollection}}</option>
+        </select>
+      </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>
