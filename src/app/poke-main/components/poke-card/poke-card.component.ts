@@ -43,7 +43,7 @@ export class PokeCardComponent implements OnInit {
     then(_ => {
       this.alertMessage.message({msg: pokemon.name + ' ha sido agregado a favoritos', type: 'success'});
       this._poke.isFavorite = true;
-    }).catch(error => {
+    }, (error) => {
       this.alertMessage.message({msg: 'No fue posible quitar a ' + pokemon.name + ' de favoritos', type: 'error'});
     });
   }
@@ -53,7 +53,7 @@ export class PokeCardComponent implements OnInit {
     .then(_ => {
       this.alertMessage.message({msg: 'Has quitado a ' + pokemon.name + ' de favoritos', type: 'success'});
       this._poke.isFavorite = false;
-    }).catch(error => {
+    }, (error) => {
       this.alertMessage.message({msg: 'No fue posible quitar a ' + pokemon.name + ' de favoritos', type: 'error'});
     });
   }

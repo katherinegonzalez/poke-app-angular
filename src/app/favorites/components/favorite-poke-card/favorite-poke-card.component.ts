@@ -34,7 +34,7 @@ export class FavoritePokeCardComponent implements OnInit {
     this.pokeService.removeFavorite(pokemon.key, pokemon.data.name)
     .then(_ => {
       this.alertMessage.message({msg: 'Has quitado a ' + pokemon.data.name + ' de favoritos', type: 'success'});
-    }).catch(error => {
+    }, (error) => {
       this.alertMessage.message({msg: 'No fue posible quitar a ' + pokemon.data.name + ' de favoritos', type: 'error'});
     });
   }

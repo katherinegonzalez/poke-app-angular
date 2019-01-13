@@ -31,5 +31,11 @@ export class CollectionListComponent implements OnInit {
     }
   }
 
+  closeModal (event) {
+    if (event) {
+      this.modalService.dismissAll();
+    }
+  }
+
 
 }

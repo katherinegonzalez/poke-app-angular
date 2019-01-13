@@ -5,11 +5,14 @@ import { CollectionListComponent } from './containers/collection-list/collection
 import { CollectionDetailComponent } from './containers/collection-detail/collection-detail.component';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes.collections';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CollectionCreateComponent, CollectionListComponent, CollectionDetailComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule.forChild(routes)
   ]
 })

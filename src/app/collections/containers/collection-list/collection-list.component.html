@@ -12,7 +12,7 @@
         </button>
       </div>
       <div class="modal-body">
-
+        <app-collection-create (closeModal)= "closeModal($event)" ></app-collection-create>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
