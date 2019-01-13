@@ -1,3 +1,7 @@
 .btn-create-collection {
   margin-bottom: 20px;
 }
+
+.btn-edit-collection, .btn-detail-collection{
+  margin-right: 10px;
+}

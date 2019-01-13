@@ -1,0 +1,18 @@
+.no-results {
+  color: #777575;
+  margin: 10px;
+  float: none;
+  margin: auto;
+}
+
+.collection-name, .collection-description{
+  margin-bottom: 20px;
+}
+
+.collection-description {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #e2e0e0;
+  border-radius: 12px;
+  padding: 10px;
+}

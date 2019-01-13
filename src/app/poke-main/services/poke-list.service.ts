@@ -81,7 +81,6 @@ export class PokeListService {
         return {key, data};           // or {key, ...data} in case data is Obj
       });
     }));
-
   }
 
   private handleError<T>(operation = 'operation', results?: T) {

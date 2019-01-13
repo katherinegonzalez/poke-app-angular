@@ -6,9 +6,10 @@ import { CollectionDetailComponent } from './containers/collection-detail/collec
 import { RouterModule } from '@angular/router';
 import { routes } from './routes.collections';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CollectionDetailListCardComponent } from './components/collection-detail-list-card/collection-detail-list-card.component';
 
 @NgModule({
-  declarations: [CollectionCreateComponent, CollectionListComponent, CollectionDetailComponent],
+  declarations: [CollectionCreateComponent, CollectionListComponent, CollectionDetailComponent, CollectionDetailListCardComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
