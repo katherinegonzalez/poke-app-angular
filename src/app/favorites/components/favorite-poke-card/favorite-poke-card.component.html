@@ -1,29 +1,30 @@
 
 <div class="card card-pokemon">
-    <a *ngIf ="_poke" [routerLink]="['../detail', _poke?.name]">
+    <a *ngIf ="_poke" [routerLink]="['../detail', _poke?.data?.name]">
       <div class="img-card-pokemon">
-          <img class="card-img-top" src="{{_poke?.sprites.front_default}}" alt="Card image cap">
+          <img class="card-img-top" src="{{_poke?.data?.sprites.front_default}}" alt="Card image cap">
       </div>
     </a>
 
     <div class="card-body">
       <div class="row">
           <div class="col-8">
-              <h5 class="card-title card-title-pokemon align-middle">{{_poke?.name}}</h5>
+              <h5 class="card-title card-title-pokemon align-middle">{{_poke?.data?.name}}</h5>
           </div>
 
           <div class="col-4 card-pokemon-icons">
 
-              <img class="card-pokemon-icon" (click)="addFavorite(_poke)" src="../../../../assets/img/favorite_border_black.png" alt="añadir a favorito">
+              <img class="card-pokemon-icon" (click)="removeFavorite(_poke)" src="../../../../assets/img/favorite_black.png" alt="añadir a favorito">
               <img class="card-pokemon-icon"src="../../../../assets/img/pokeball.png" alt="añadir a colección">
           </div>
       </div>
 
       <div class="card-pokemon-abilities">
-        <div *ngFor = "let ability of _poke?.abilities" class="ability-card">
+        <div *ngFor = "let ability of _poke?.data?.abilities" class="ability-card">
           {{ability.ability?.name}}
         </div>
       </div>
       </div>
 </div>
+
 

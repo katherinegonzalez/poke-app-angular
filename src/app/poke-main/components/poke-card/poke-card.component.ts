@@ -31,4 +31,8 @@ export class PokeCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  addFavorite(pokemon) {
+    this.pokeService.addFavorite(pokemon);
+  }
+
 }

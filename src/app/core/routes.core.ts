@@ -11,6 +11,10 @@ export const routes: Routes = [
         loadChildren: '../poke-main/poke-main.module#PokeMainModule'
       },
       {
+        path: 'favorites',
+        loadChildren: '../favorites/favorites.module#FavoritesModule'
+      },
+      {
         path: '', redirectTo: 'pokemons', pathMatch: 'full'
       }
     ]
