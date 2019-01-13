@@ -1,3 +1,31 @@
-<p>
-  poke-detail works!
-</p>
+
+<div class="pokemon-title">
+  <h2>{{_poke?.name}}</h2>
+</div>
+<div class="row">
+  <div class="col-6">
+      <div class="pokemon-info">
+        Experiencia: {{_poke?.base_experience}} <br />
+        Altura: {{_poke?.height}} <br />
+        Peso: {{_poke?.weight}} <br />
+        Tipo: {{_poke?.types[0].type.name}}
+        Held items: <div *ngFor="let heldItem of _poke?.held_items">heldItem?.item?.name</div>
+        <br />
+        Habilidades: <br />
+        <div class="card-pokemon-abilities">
+            <div *ngFor = "let ability of _poke?.abilities" class="ability-card">
+              {{ability.ability?.name}}
+            </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-6">
+      <div class="card-pokemon">
+          <img class="img-pokemon" src="{{_poke?.sprites.front_default}}">
+          <div class="pokemon-icons">
+              <img class="pokemon-icon" src="../../../../assets/img/favorite_border_black.png" alt="añadir a favorito">
+              <img class="pokemon-icon"src="../../../../assets/img/pokeball.png" alt="añadir a colección">
+          </div>
+      </div>
+    </div>
+</div>

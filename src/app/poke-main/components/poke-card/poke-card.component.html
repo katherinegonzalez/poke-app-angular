@@ -1,3 +1,4 @@
+<a *ngIf ="_poke" [routerLink]="['../detail', _poke?.name]">
 <div class="card card-pokemon">
     <div class="img-card-pokemon">
         <img class="card-img-top" src="{{_poke?.sprites.front_default}}" alt="Card image cap">
@@ -23,3 +24,4 @@
       </div>
       </div>
 </div>
+</a>
