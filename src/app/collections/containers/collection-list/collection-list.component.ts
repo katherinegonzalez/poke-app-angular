@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CollectionsService } from '../../services/collections.service';
+import { Collection } from '../../models/collections';
+
 
 @Component({
   selector: 'app-collection-list',
@@ -7,10 +10,16 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./collection-list.component.css']
 })
 export class CollectionListComponent implements OnInit {
+
   closeResult: string;
-  constructor( private modalService: NgbModal) { }
+  collections: any[];
+
+  constructor(
+    private modalService: NgbModal,
+    private collectionsService: CollectionsService) { }
 
   ngOnInit() {
+    this.getAllCollections();
   }
 
   open(content) {
@@ -37,5 +46,12 @@ export class CollectionListComponent implements OnInit {
     }
   }
 
+  getAllCollections() {
+    this.collectionsService.listCollections().subscribe(
+      collections => {
+        this.collections = collections;
+      }
+    );
+  }
 
 }

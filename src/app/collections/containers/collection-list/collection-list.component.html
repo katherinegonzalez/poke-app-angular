@@ -2,7 +2,7 @@
 <div class="">
     <h2>Colecciones</h2>
 </div>
-<button (click)="open(content)" class="btn btn-primary pull-right">+ Crear Colección</button>
+<button (click)="open(content)" class="btn btn-primary pull-right btn-create-collection">+ Crear Colección</button>
 
   <ng-template #content let-modal>
       <div class="modal-header">
@@ -19,34 +19,21 @@
       </div>
     </ng-template>
 
-
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+    <tr *ngFor="let collecion of collections; index as i">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{collecion?.data?.nameCollection}}</td>
+      <td>{{collecion?.data?.descriptionCollection}}</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
