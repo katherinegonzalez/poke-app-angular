@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CollectionsService } from '../../services/collections.service';
 import { Collection } from '../../models/collections';
+import { MessagesService} from 'src/app/alerts/services/messages.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class CollectionListComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private collectionsService: CollectionsService) { }
+    private collectionsService: CollectionsService,
+    private alertMessage: MessagesService) { }
 
   ngOnInit() {
     this.getAllCollections();
@@ -59,6 +61,16 @@ export class CollectionListComponent implements OnInit {
   editSelectedCollection(collection: any, content: any) {
     this.selectedCollection = collection;
     this.modalService.open(content);
+  }
+
+  deleteSelectedCollection(collecion: any) {
+    this.collectionsService.removeCollection(collecion.key).
+      then(_ => {
+        this.alertMessage.message({msg: 'La colección ' + collecion.data.nameCollection + ' ha sido eliminada exitosamente',
+          type: 'success'});
+      }, (error) => {
+        this.alertMessage.message({msg: 'No fue posible eliminar la colección ' + collecion.data.nameCollection , type: 'error'});
+      });
   }
 
 }

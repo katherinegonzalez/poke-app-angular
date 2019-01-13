@@ -40,6 +40,11 @@ export class CollectionsService {
       return promise;
     }
 
+    removeCollection(key: string): any {
+      const promise = this.collectionsRef.remove(key);
+      return promise;
+    }
+
     listCollections(): Observable<any[]> {
       return this.collectionsRef.snapshotChanges().
         pipe(map(items => {            // <== way of chaining

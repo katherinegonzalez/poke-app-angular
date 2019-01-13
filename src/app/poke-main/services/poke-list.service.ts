@@ -58,11 +58,7 @@ export class PokeListService {
   addFavorite(pokemon: any): any {
     const promise = this.favsRef.push(pokemon);
     return promise;
-    /*promise.then(_ => {
-      this.alertMessage.message({msg: pokemon.name + ' ha sido agregado a favoritos', type: 'success'});
-    });*/
   }
-
 
   removeFavorite(key: string, name: string): any {
     const promise = this.favsRef.remove(key);
