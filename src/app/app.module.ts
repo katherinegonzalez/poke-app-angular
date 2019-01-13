@@ -17,6 +17,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { routes } from './routes';
 import { environment } from '../environments/environment';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'angular-poke-app'),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
