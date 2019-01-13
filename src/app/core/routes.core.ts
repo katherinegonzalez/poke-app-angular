@@ -15,6 +15,10 @@ export const routes: Routes = [
         loadChildren: '../favorites/favorites.module#FavoritesModule'
       },
       {
+        path: 'collections',
+        loadChildren: '../collections/collections.module#CollectionsModule'
+      },
+      {
         path: '', redirectTo: 'pokemons', pathMatch: 'full'
       }
     ]

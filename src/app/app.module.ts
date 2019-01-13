@@ -18,9 +18,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { routes } from './routes';
 import { environment } from '../environments/environment';
 
+
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
