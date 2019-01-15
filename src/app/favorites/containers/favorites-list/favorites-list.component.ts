@@ -22,6 +22,12 @@ export class FavoritesListComponent implements OnInit {
 
   ngOnInit() {
 
+    window.addEventListener('change', this.searchPokemons.bind(this));
+
+    this.getPokemonsFavorites();
+  }
+
+  getPokemonsFavorites() {
     this.authService.profileUser()
     .subscribe(
       user => {
@@ -37,6 +43,35 @@ export class FavoritesListComponent implements OnInit {
         );
       }
     );
+  }
+
+  getPokemonFavoriteSearched(namePokemon: string) {
+    this.authService.profileUser()
+    .subscribe(
+      user => {
+        this.favoriteService.searchFavorites(user, namePokemon).subscribe(
+          list => {
+            if (list.length > 0) {
+              this.pokemons = list.filter(function (el) {
+                return el != null;
+              });
+            } else {
+              this.pokemons = [];
+              this.message = 'No hay favoritos para mostrar';
+            }
+          }
+        );
+      }
+    );
+  }
+  searchPokemons(event) {
+    if (event.target.id === 'searchPokemon') {
+      if (event.srcElement.value === '' || event.srcElement.value === null || event.srcElement.value === undefined) {
+        this.getPokemonsFavorites();
+      } else {
+        this.getPokemonFavoriteSearched(event.srcElement.value.toLowerCase());
+      }
+    }
   }
 
 }

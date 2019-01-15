@@ -23,5 +23,20 @@ export class FavoriteService {
         return {key, data};           // or {key, ...data} in case data is Obj
       });
   }));
-}
+  }
+
+  searchFavorites(user: firebase.User, namePokemon: string): Observable<any[]> {
+    this.favsRef = this.rdbFire.list(`favorites/${user.uid}`);
+    return this.favsRef.snapshotChanges().
+      pipe(map(items => {            // <== new way of chaining
+      return items.map(a => {
+        const data = a.payload.val();
+        if (data.name === namePokemon) {
+          const key = a.payload.key;
+          return {key, data};
+        }          // or {key, ...data} in case data is Obj
+      });
+  }));
+  }
+
 }
