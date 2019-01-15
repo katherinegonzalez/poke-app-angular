@@ -9,10 +9,16 @@ export class TopNavBarComponent implements OnInit {
 
   @Output() sidebarClosed = new EventEmitter<boolean>();
   isSidebarClosed: Boolean = false;
+  user: {name: string, photoUrl: string};
 
   constructor() { }
 
   ngOnInit() {
+    const userLocalstorage = JSON.parse(localStorage.getItem('angularPokeApp')).user;
+    this.user = {
+      name: userLocalstorage.displayName,
+      photoUrl: userLocalstorage.photoURL
+    };
   }
 
   clickSideBar() {
