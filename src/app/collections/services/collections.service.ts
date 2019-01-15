@@ -81,7 +81,8 @@ export class CollectionsService {
     return resultQuery.snapshotChanges().
       pipe(map(items => {            // <== new way of chaining
       return items.map(a => {
-        const data = a.payload.val();
+        let data = <any>{};
+        data = a.payload.val();
         const arrayPokemons = [];
         data.pokemonsCollection.forEach( pokemon => {
           if (pokemon === namePokemon) {
