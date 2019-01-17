@@ -19,6 +19,10 @@ import { routes } from './routes';
 import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { StoreModule} from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers, metaReducer} from './reducers';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +38,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireModule.initializeApp(environment.firebaseConfig, 'angular-poke-app'),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    NgbModule
+    NgbModule,
+    StoreModule.forRoot(reducers, {metaReducers: metaReducer}),
+    StoreDevtoolsModule.instrument(
+      {
+        name: 'Bzg Poke App', // Identificador de la App en el plugin
+        logOnly: environment.production, // En producción solo permite ver logs
+        maxAge: 30 // Historial de estados
+      }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

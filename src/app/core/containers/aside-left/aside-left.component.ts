@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-aside-left',
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AsideLeftComponent implements OnInit {
 
   user: {name: string, photoUrl: string};
+  @Input() asideState: string;
 
   constructor() { }
 
