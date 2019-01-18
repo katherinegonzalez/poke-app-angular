@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { ILogin } from '../models/login.interface';
-import { User } from 'firebase';
+import { UserInfo } from 'firebase';
 
 // Definimos las acciones
  export enum AuthActionTypes {
@@ -21,7 +21,7 @@ export class Login implements Action {
 export class LoginSuccessful implements Action {
   readonly type = AuthActionTypes.LoginSuccessful;
 
-  constructor(public payload: User) {}
+  constructor(public payload: UserInfo) {}
 }
 
 export class LoginError implements Action {

@@ -1,12 +1,12 @@
 import { AuthActions, AuthActionTypes } from '../actions/auth';
-import { User } from 'firebase';
+import { UserInfo } from 'firebase';
 
 export interface State {
   loading: boolean;
   loaded: boolean;
   error: any | null;
   loggedIn: boolean;
-  user: User | null;
+   user: UserInfo | null;
 }
 
 export const initialState: State = {
@@ -55,6 +55,7 @@ export const getLoaded = (state: State) => state.loaded;
 export const getError = (state: State) => state.error;
 export const getUser = (state: State) => state.user;
 export const getLoggedIn = (state: State) => state.loggedIn;
+
 
 
 
