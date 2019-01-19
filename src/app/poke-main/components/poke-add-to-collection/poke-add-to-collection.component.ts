@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { MessagesService } from 'src/app/alerts/services/messages.service';
+import { AnyFn } from '@ngrx/store/src/selector';
 
 @Component({
   selector: 'app-poke-add-to-collection',
@@ -37,7 +38,9 @@ export class PokeAddToCollectionComponent implements OnInit {
   getAllCollections() {
     this.collectionsService.listCollections().subscribe(
       collections => {
+
         this.collections = collections;
+        this.addTocollectionForm.controls['collectionVal'].setValue(collections[0]);
       }
     );
   }
@@ -47,8 +50,6 @@ export class PokeAddToCollectionComponent implements OnInit {
   }
 
   addPokemonToCollection() {
-
-
     console.log(this.addTocollectionForm.value);
     const valueCollection = this.addTocollectionForm.value;
     if (valueCollection.collectionVal.data.pokemonsCollection === '' ||

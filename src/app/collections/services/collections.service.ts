@@ -50,6 +50,8 @@ export class CollectionsService {
     }
 
     listCollections(): Observable<any[]> {
+      const userLocalstorage = JSON.parse(localStorage.getItem('angularPokeApp')).user;
+      this.collectionsRef = this.rdbFire.list(`collections/${userLocalstorage.uid}`);
       return this.collectionsRef.snapshotChanges().
         pipe(map(items => {            // <== way of chaining
         return items.map(a => {
