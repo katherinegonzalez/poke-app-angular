@@ -11,7 +11,7 @@
   margin-bottom: 20px;
 }
 
-.pokemon-icon{
+/*.pokemon-icon{
   height: 30px;
   width: 30px;
   cursor: pointer;
@@ -21,7 +21,7 @@
   padding-bottom: 10px;
   padding-right: 10px;
   text-align: right;
-}
+}*/
 
 .img-pokemon {
   width: 80%;
@@ -49,3 +49,15 @@
 .card-pokemon-abilities{
   text-align: center;
 }
+
+.pokemon-icon{
+  cursor: pointer;
+}
+
+.pokemon-icons{
+  padding-bottom: 10px;
+}
+
+
+
+
