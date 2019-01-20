@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, DoCheck } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../../reducers';
 import { Observable } from 'rxjs';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-core',
@@ -29,23 +30,41 @@ export class CoreComponent implements OnInit {
 
   state: string = null;
 
-  constructor(private store: Store<fromRoot.State>) { }
+  constructor(
+    private store: Store<fromRoot.State>,
+    private router: Router) {
+      if (localStorage.getItem('angularPokeApp') === undefined || localStorage.getItem('angularPokeApp') === null ) {
+        this.router.navigate(['/login']);
+          return;
+      } else {
+        const userLocalstorage = JSON.parse(localStorage.getItem('angularPokeApp')).user;
+        if (userLocalstorage === undefined || userLocalstorage === null) {
+          this.router.navigate(['/login']);
+          return;
+        }
+      }
+    }
+
+
+  /*ngAfterContentInit() {
+    const userLocalstorage = JSON.parse(localStorage.getItem('angularPokeApp')).user;
+    if (userLocalstorage === undefined || userLocalstorage === null) {
+      this.router.navigate(['/login']);
+      return;
+    }
+  }*/
 
   ngOnInit() {
-    this.stateAside$.subscribe (
-      state => {
-        this.state = state;
-      }
-    );
+
+      this.stateAside$.subscribe (
+        state => {
+          this.state = state;
+        }
+      );
   }
 
   clickSidebar(event) {
-    console.log(event);
     this.isSidebarClosed = event;
-  }
-
-  getSearch(event) {
-    console.log(event);
   }
 
 }

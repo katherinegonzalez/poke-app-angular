@@ -3,6 +3,7 @@ import { PokeListService } from '../../services/poke-list.service';
 import { Observable, of } from 'rxjs';
 import { IPokeList } from '../../models/interfaces/poke-list';
 import { IPokemon } from '../../models/interfaces/pokemon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-poke-list',
@@ -15,12 +16,12 @@ export class PokeListComponent implements OnInit {
   pokemons: IPokemon[];
   message: string;
 
-
-  constructor( private pokeService: PokeListService) { }
+  constructor(
+    private pokeService: PokeListService,
+    private router: Router) { }
 
   ngOnInit() {
     window.addEventListener('change', this.searchPokemons.bind(this));
-
     this.getAllPokemons();
   }
 
@@ -59,6 +60,7 @@ export class PokeListComponent implements OnInit {
     );
   }
   searchPokemons(event) {
+    if (this.router.url.includes('pokemons')) {
     if (event.target.id === 'searchPokemon') {
       if (event.srcElement.value === '' || event.srcElement.value === null || event.srcElement.value === undefined) {
         this.getAllPokemons();
@@ -66,6 +68,7 @@ export class PokeListComponent implements OnInit {
         this.getPokemonSearched(event.srcElement.value.toLowerCase());
       }
     }
+  }
   }
 
 

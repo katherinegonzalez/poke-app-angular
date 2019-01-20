@@ -4,6 +4,7 @@ import { PokeListService } from '../../../poke-main/services/poke-list.service';
 import {IPokemon} from '../../../poke-main/models/interfaces/pokemon';
 import { FavoriteService } from '../../services/favorite.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorites-list',
@@ -18,7 +19,8 @@ export class FavoritesListComponent implements OnInit {
   constructor(
     private pokeListService: PokeListService,
     private favoriteService: FavoriteService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -55,6 +57,9 @@ export class FavoritesListComponent implements OnInit {
               this.pokemons = list.filter(function (el) {
                 return el != null;
               });
+              if (this.pokemons.length === 0) {
+                this.message = 'No se encontraron pokemons con este nombre';
+              }
             } else {
               this.pokemons = [];
               this.message = 'No hay favoritos para mostrar';
@@ -65,13 +70,16 @@ export class FavoritesListComponent implements OnInit {
     );
   }
   searchPokemons(event) {
-    if (event.target.id === 'searchPokemon') {
-      if (event.srcElement.value === '' || event.srcElement.value === null || event.srcElement.value === undefined) {
-        this.getPokemonsFavorites();
-      } else {
-        this.getPokemonFavoriteSearched(event.srcElement.value.toLowerCase());
+    if (this.router.url.includes('favorites')) {
+      if (event.target.id === 'searchPokemon') {
+        if (event.srcElement.value === '' || event.srcElement.value === null || event.srcElement.value === undefined) {
+          this.getPokemonsFavorites();
+        } else {
+          this.getPokemonFavoriteSearched(event.srcElement.value.toLowerCase());
+        }
       }
     }
   }
+
 
 }

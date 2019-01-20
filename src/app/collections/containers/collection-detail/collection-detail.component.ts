@@ -40,15 +40,19 @@ export class CollectionDetailComponent implements OnInit {
     );
   }
 
-  getPokemonCollectionSearched(name, namePokemon) {
-    this.collectionsService.searchPokemonOfCollection(name, namePokemon).subscribe(
+  getPokemonCollectionSearched(key, namePokemon) {
+    this.collectionsService.searchPokemonOfCollection(key, namePokemon).subscribe(
       collection => {
         if (collection.length > 0 ) {
           this.pokemons = collection[0].data.pokemonsCollection;
           this.collectionDescription = collection[0].data.descriptionCollection;
+          if (this.pokemons.length === 0) {
+            this.message = 'No se encontraron pokemons con este nombre';
+          }
+
         } else {
           this.pokemons = [];
-          this.message = 'No hay pokemones en esta colección';
+          this.message = 'No se encontraron colecciones';
         }
 
       }
@@ -56,12 +60,14 @@ export class CollectionDetailComponent implements OnInit {
   }
 
   searchPokemons(event) {
-    this.collectionName = this.router.url.split('/').pop();
-    if (event.target.id === 'searchPokemon') {
-      if (event.srcElement.value === '' || event.srcElement.value === null || event.srcElement.value === undefined) {
-        this.getCollection(this.collectionName);
-      } else {
-        this.getPokemonCollectionSearched(this.collectionName, event.srcElement.value.toLowerCase());
+    if (this.router.url.includes('collection')) {
+      this.collectionKey = this.router.url.split('/').pop();
+      if (event.target.id === 'searchPokemon') {
+        if (event.srcElement.value === '' || event.srcElement.value === null || event.srcElement.value === undefined) {
+          this.getCollection(this.collectionKey);
+        } else {
+          this.getPokemonCollectionSearched(this.collectionKey, event.srcElement.value.toLowerCase());
+        }
       }
     }
   }

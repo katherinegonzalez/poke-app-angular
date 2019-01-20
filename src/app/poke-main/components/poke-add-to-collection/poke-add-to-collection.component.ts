@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CollectionsService } from 'src/app/collections/services/collections.service';
 import { MessagesService } from 'src/app/alerts/services/messages.service';
-import { AnyFn } from '@ngrx/store/src/selector';
 
 @Component({
   selector: 'app-poke-add-to-collection',
