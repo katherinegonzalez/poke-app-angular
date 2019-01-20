@@ -22,8 +22,8 @@ export class CollectionCreateComponent implements OnInit {
 
   collectionForm = this.formBuilder.group({
     nameCollection: ['', Validators.required],
-    descriptionCollection: ['', Validators],
-    pokemonsCollection: ['', Validators.required]
+    descriptionCollection: [''],
+    pokemonsCollection: ['']
   });
 
   @Output() closeModal = new EventEmitter<boolean>();
@@ -66,18 +66,22 @@ export class CollectionCreateComponent implements OnInit {
   }
 
   submit(event: Collection) {
-    switch (this.typeForm) {
-      case 'create':
-        this.createCollection();
-      break;
-      case 'edit':
-        this.editCollection();
-      break;
+    if (this.collectionForm.invalid) {
+      alert('El nombre de la colección no puede estar vacío');
+      return;
+    } else {
+      switch (this.typeForm) {
+        case 'create':
+          this.createCollection();
+        break;
+        case 'edit':
+          this.editCollection();
+        break;
+      }
     }
   }
 
   createCollection() {
-    console.log(this.collectionForm.value);
     this.collecionsService.addCollection(this.collectionForm.value)
       .then(_ => {
         this.alertMessage.message({msg: 'La colección ' + this.collectionForm.value.nameCollection + ' ha sido creada exitosamente',
