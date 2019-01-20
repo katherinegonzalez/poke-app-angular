@@ -5,9 +5,14 @@
     </div>
   </div>
   <div class="row body-content">
-    <app-aside-left [asideState]="stateAside$ | async" [ngClass]="(isSidebarClosed == false)? 'left-aside col-3': 'left-aside close'"></app-aside-left>
+    <!--<app-aside-left [asideState]="stateAside$ | async" [ngClass]="(isSidebarClosed == false)? 'left-aside col-3': 'left-aside close'"></app-aside-left>
     <div [ngClass]="(isSidebarClosed == false)? 'col-9 main-section': 'col-12 main-section'">
       <app-main-content></app-main-content>
-    </div>
+    </div>-->
+
+    <app-aside-left class="col-3 left-aside" [@asideAnimation]="state"  [ngClass]="(state == 'close')? 'aside-close': ''"></app-aside-left>
+    <div [ngClass]="(state == 'close')? 'col-11 main-section': 'col-9 main-section'">
+        <app-main-content></app-main-content>
+      </div>
   </div>
 </div>

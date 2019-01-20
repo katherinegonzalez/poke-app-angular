@@ -17,11 +17,11 @@ export class TopNavBarComponent implements OnInit {
 
   state: string;
   stateAside$: Observable<string> = this.store.pipe(select(fromRoot.getShowSideNav));
-
+  _state: string;
   constructor(private store: Store<fromRoot.State>) {
     this.stateAside$.subscribe(
       aside => {
-        this.state = aside;
+        this._state = aside;
       }
     );
   }
@@ -34,7 +34,7 @@ export class TopNavBarComponent implements OnInit {
     };
   }
 
-  clickSideBar() {
+  /*clickSideBar() {
     if (this.isSidebarClosed) {
       this.isSidebarClosed = false;
       this.sidebarClosed.emit(false);
@@ -49,6 +49,14 @@ export class TopNavBarComponent implements OnInit {
       this.store.dispatch(new layout.OpenSideNav());
     } else {
       this.store.dispatch(new layout.CloseSideNav());
+    }
+  }*/
+
+  close() {
+    if (this._state === 'open') {
+      this.store.dispatch(new layout.CloseSideNav());
+    } else {
+      this.store.dispatch(new layout.OpenSideNav());
     }
   }
 

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { HeaderAsideLeftComponent } from './components/header-aside-left/header-aside-left.component';
@@ -26,6 +27,7 @@ import { AlertsModule } from '../alerts/alerts.module';
     DetailPokemonComponent],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     RouterModule.forChild(routes),
     AlertsModule
   ],
