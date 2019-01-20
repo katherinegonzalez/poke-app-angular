@@ -7,6 +7,7 @@ import { PokeDetailComponent } from './containers/poke-detail/poke-detail.compon
 import { PokeCardComponent } from './components/poke-card/poke-card.component';
 import { PokeAddToCollectionComponent } from './components/poke-add-to-collection/poke-add-to-collection.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [PokeListComponent, PokeDetailComponent, PokeCardComponent, PokeAddToCollectionComponent],
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPaginationModule,
     RouterModule.forChild(routes)
   ]
 })

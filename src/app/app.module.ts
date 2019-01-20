@@ -18,6 +18,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { routes } from './routes';
 import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 import { StoreModule} from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -39,6 +40,7 @@ import { reducers, metaReducer} from './reducers';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     NgbModule,
+    NgxPaginationModule,
     StoreModule.forRoot(reducers, {metaReducers: metaReducer}),
     StoreDevtoolsModule.instrument(
       {

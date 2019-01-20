@@ -1,8 +1,9 @@
 <div class="row" id="books">
-    <div *ngFor="let pokemon of pokemons" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+    <div *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: 6, currentPage: p }" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <app-favorite-poke-card [poke]="pokemon"></app-favorite-poke-card>
     </div>
     <div class="no-results" *ngIf="pokemons?.length === 0">
       <h5>{{message}}</h5>
     </div>
   </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>

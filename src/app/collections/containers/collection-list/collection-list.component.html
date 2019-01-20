@@ -44,7 +44,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let collecion of collections; index as i">
+    <!-- let collecion of collections; index as i" -->
+    <tr *ngFor="let collecion of collections | paginate: { itemsPerPage: 5, currentPage: p }; index as i ">
       <th scope="row">{{i + 1}}</th>
       <td>{{collecion?.data?.nameCollection}}</td>
       <td>{{collecion?.data?.descriptionCollection}}</td>
@@ -57,4 +58,6 @@
     </tr>
   </tbody>
 </table>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
 

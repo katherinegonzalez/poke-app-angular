@@ -6,7 +6,9 @@ import { CollectionDetailComponent } from './containers/collection-detail/collec
 import { RouterModule } from '@angular/router';
 import { routes } from './routes.collections';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { CollectionDetailListCardComponent } from './components/collection-detail-list-card/collection-detail-list-card.component';
+
 
 @NgModule({
   declarations: [CollectionCreateComponent, CollectionListComponent, CollectionDetailComponent, CollectionDetailListCardComponent],
@@ -14,6 +16,7 @@ import { CollectionDetailListCardComponent } from './components/collection-detai
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPaginationModule,
     RouterModule.forChild(routes)
   ]
 })

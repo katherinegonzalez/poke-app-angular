@@ -11,6 +11,7 @@ export class CollectionDetailComponent implements OnInit {
 
   pokemons: any[];
   collectionKey: string;
+  collectionName: string;
   collectionDescription: string;
   message: string;
 
@@ -31,6 +32,8 @@ export class CollectionDetailComponent implements OnInit {
         if (collection.length > 0 ) {
           this.pokemons = collection[0].data.pokemonsCollection;
           this.collectionDescription = collection[0].data.descriptionCollection;
+          this.collectionName = collection[0].data.nameCollection;
+
         } else {
           this.pokemons = [];
           this.message = 'No hay pokemones en esta colección';
