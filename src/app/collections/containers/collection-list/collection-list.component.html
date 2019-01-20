@@ -49,7 +49,7 @@
       <td>{{collecion?.data?.nameCollection}}</td>
       <td>{{collecion?.data?.descriptionCollection}}</td>
       <td>
-        <a [routerLink]="['../collection', collecion?.data?.nameCollection]" class="btn btn-success btn-sm btn-detail-collection"><i class="fa fa-eye"></i></a>
+        <a [routerLink]="['../collection', collecion?.key]" class="btn btn-success btn-sm btn-detail-collection"><i class="fa fa-eye"></i></a>
         <button  (click)="editSelectedCollection(collecion, contentEdit)"  class="btn btn-primary btn-sm btn-edit-collection"><i class="fa fa-pencil"></i></button>
         <button (click)="deleteSelectedCollection(collecion)" class="btn btn-danger btn-sm "><i class="fa fa-trash"></i></button>
       </td>

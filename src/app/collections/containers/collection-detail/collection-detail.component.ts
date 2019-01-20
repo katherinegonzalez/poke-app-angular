@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 export class CollectionDetailComponent implements OnInit {
 
   pokemons: any[];
-  collectionName: string;
+  collectionKey: string;
   collectionDescription: string;
   message: string;
 
@@ -21,12 +21,12 @@ export class CollectionDetailComponent implements OnInit {
 
   ngOnInit() {
     window.addEventListener('change', this.searchPokemons.bind(this));
-    this.collectionName = this.router.url.split('/').pop();
-    this.getCollection(this.collectionName);
+    this.collectionKey = this.router.url.split('/').pop();
+    this.getCollection(this.collectionKey);
   }
 
-  getCollection(name) {
-    this.collectionsService.searchCollection(name).subscribe(
+  getCollection(key) {
+    this.collectionsService.searchCollection(key).subscribe(
       collection => {
         if (collection.length > 0 ) {
           this.pokemons = collection[0].data.pokemonsCollection;

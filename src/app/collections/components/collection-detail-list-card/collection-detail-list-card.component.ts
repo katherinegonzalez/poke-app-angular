@@ -60,7 +60,6 @@ export class CollectionDetailListCardComponent implements OnInit {
   isFavorite(pokemon) {
     this.pokeService.searchPokemonFavorite(pokemon).subscribe(
       poke => {
-        console.log(poke);
         if (poke.length > 0) {
             pokemon.isFavorite = true;
             pokemon.key = poke[0].key;

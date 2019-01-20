@@ -62,10 +62,10 @@ export class CollectionsService {
     }));
   }
 
-  searchCollection(name: string): Observable<any[]> {
+  searchCollection(keyCollection: string): Observable<any[]> {
     const userLocalstorage = JSON.parse(localStorage.getItem('angularPokeApp')).user;
     const resultQuery = this.rdbFire.list(`collections/${userLocalstorage.uid}`,
-    ref => ref.orderByChild('nameCollection').equalTo(name));
+    ref => ref.ref.orderByKey().equalTo(keyCollection));
     return resultQuery.snapshotChanges().
       pipe(map(items => {            // <== new way of chaining
       return items.map(a => {
