@@ -8,7 +8,7 @@ import { routes } from './routes.collections';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CollectionDetailListCardComponent } from './components/collection-detail-list-card/collection-detail-list-card.component';
-
+// import { PokeMainModule } from '../poke-main/poke-main.module';
 
 @NgModule({
   declarations: [CollectionCreateComponent, CollectionListComponent, CollectionDetailComponent, CollectionDetailListCardComponent],
