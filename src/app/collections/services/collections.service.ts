@@ -76,6 +76,20 @@ export class CollectionsService {
     }));
   }
 
+  searchCollectionByName(name: string): Observable<any[]> {
+    const userLocalstorage = JSON.parse(localStorage.getItem('angularPokeApp')).user;
+    const resultQuery = this.rdbFire.list(`collections/${userLocalstorage.uid}`,
+    ref => ref.ref.orderByChild('nameCollection').equalTo(name));
+    return resultQuery.snapshotChanges().
+      pipe(map(items => {            // <== new way of chaining
+      return items.map(a => {
+        const data = a.payload.val();
+        const key = a.payload.key;
+        return {key, data};           // or {key, ...data} in case data is Obj
+      });
+    }));
+  }
+
   searchPokemonOfCollection(keyCollection: string, namePokemon: string): Observable<any[]> {
     const userLocalstorage = JSON.parse(localStorage.getItem('angularPokeApp')).user;
     const resultQuery = this.rdbFire.list(`collections/${userLocalstorage.uid}`,

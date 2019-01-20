@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CollectionsService } from '../../services/collections.service';
 import { Collection } from '../../models/collections';
 import { MessagesService} from 'src/app/alerts/services/messages.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,9 +21,11 @@ export class CollectionListComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private collectionsService: CollectionsService,
-    private alertMessage: MessagesService) { }
+    private alertMessage: MessagesService,
+    private router: Router) { }
 
   ngOnInit() {
+    window.addEventListener('change', this.searchCollection.bind(this));
     this.getAllCollections();
   }
 
@@ -73,4 +76,23 @@ export class CollectionListComponent implements OnInit {
       });
   }
 
+  searchCollection(event) {
+    if (this.router.url.includes('collections')) {
+      if (event.target.id === 'searchPokemon') {
+        if (event.srcElement.value === '' || event.srcElement.value === null || event.srcElement.value === undefined) {
+          this.getAllCollections();
+        } else {
+          this.getCollection(event.srcElement.value);
+        }
+      }
+    }
+  }
+
+  getCollection(name) {
+    this.collectionsService.searchCollectionByName(name).subscribe(
+      collections => {
+        this.collections = collections;
+      }
+    );
+  }
 }
