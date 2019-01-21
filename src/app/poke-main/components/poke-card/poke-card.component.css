@@ -1,16 +1,25 @@
-.card-pokemon{
-  margin-bottom: 20px;
-  border-radius: 4.25rem
-}
-
 a{
   text-decoration: none;
 }
 
+.card-pokemon{
+  border: none;
+  margin-bottom: 40px;
+}
+
+.pxl-border {
+  background: cornflowerblue;
+  box-shadow: 0 -6px 0 -2px cornflowerblue, 0 6px 0 -2px cornflowerblue, 0 -12px 0 -4px cornflowerblue, 0 12px 0 -4px cornflowerblue, 0 -18px 0 -8px cornflowerblue, 0 18px 0 -8px cornflowerblue, 0 -24px 0 -12px cornflowerblue, 0 24px 0 -12px cornflowerblue, -2px 0 0 0 black, 2px 0 0 0 black, 0 -4px 0 0 black, 0 4px 0 0 black, 0 -10px 0 -2px black, 0 10px 0 -2px black, 0 -14px 0 -4px black, 0 14px 0 -4px black, 0 -20px 0 -8px black, 0 20px 0 -8px black, 0 -26px 0 -12px black, 0 26px 0 -12px black, -4px 0 0 0 white, 4px 0 0 0 white, 0 -2px 0 2px white, 0 2px 0 2px white, 0 -8px 0 0px white, 0 8px 0 0px white, 0 -12px 0 -2px white, 0 12px 0 -2px white, 0 -16px 0 -4px white, 0 16px 0 -4px white, 0 -22px 0 -8px white, 0 22px 0 -8px white, 0 -28px 0 -12px white, 0 28px 0 -12px white, -6px 0 0 0 black, 6px 0 0 0 black, 0 0 0 4px black, 0 -6px 0 2px black, 0 6px 0 2px black, 0 -10px 0 0 black, 0 10px 0 0 black, 0 -14px 0 -2px black, 0 14px 0 -2px black, 0 -18px 0 -4px black, 0 18px 0 -4px black, 0 -24px 0 -8px black, 0 24px 0 -8px black, 0 -30px 0 -12px black, 0 30px 0 -12px black;
+}
+
 .img-card-pokemon{
   background-color: #e2e0e0;
-  border-radius: 4.25rem 4.25rem 0 0;
-  margin: 5px 5px 0px 5px;
+  border-radius: 3.25rem 3.25rem 0 0;
+  margin: 5px 5px 0px;
+}
+
+.img-card-pokemon > img {
+  image-rendering: pixelated;
 }
 
 .ability-card{
@@ -25,7 +34,46 @@ a{
   font-size: 10px;
 }
 
-.card-pokemon-abilities{
+.type-card {
+  border-radius: 10px;
+  text-align: center;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  font-size: 10px;
+}
+
+.type-card.normal {
+  background-color: yellowgreen;
+}
+
+.type-card.poison {
+  background-color: lightpink;
+}
+
+.type-card.grass {
+  background-color: lightgreen;
+}
+
+.type-card.fire {
+  background-color: orange;
+}
+
+.type-card.water {
+  background-color: lightskyblue;
+}
+
+.type-card.flying {
+  background-color: lightseagreen;
+}
+
+.type-card.bug {
+  background-color: coral;
+}
+
+.card-pokemon-abilities {
   text-align: center;
 }
 

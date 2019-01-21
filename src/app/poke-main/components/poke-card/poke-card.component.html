@@ -1,5 +1,12 @@
 
-<div class="card card-pokemon">
+<div class="card card-pokemon pxl-border">
+    <div>
+        <div *ngFor = "let type of _poke?.types" class="type-card">
+            <div class="type-card {{type?.type.name}}">
+                <span >{{type?.type.name}}</span>
+            </div>
+        </div>
+    </div>
     <a *ngIf ="_poke" [routerLink]="['../detail', _poke?.name]">
       <div class="img-card-pokemon">
           <img class="card-img-top" src="{{_poke?.sprites.front_default}}" alt="Card image cap">
@@ -27,7 +34,7 @@
       </div>
 
       <div class="card-pokemon-abilities">
-        <div *ngFor = "let ability of _poke?.abilities" class="ability-card">
+        <div *ngFor = "let ability of _poke?.abilities" class="ability-card pixel-bullet">
           {{ability.ability?.name}}
         </div>
       </div>
