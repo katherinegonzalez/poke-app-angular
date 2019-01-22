@@ -49,7 +49,6 @@ export class PokeAddToCollectionComponent implements OnInit {
   }
 
   addPokemonToCollection() {
-    console.log(this.addTocollectionForm.value);
     const valueCollection = this.addTocollectionForm.value;
     if (valueCollection.collectionVal.data.pokemonsCollection === '' ||
     valueCollection.collectionVal.data.pokemonsCollection === null ||

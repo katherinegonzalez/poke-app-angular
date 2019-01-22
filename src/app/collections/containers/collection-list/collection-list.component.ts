@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CollectionsService } from '../../services/collections.service';
 import { Collection } from '../../models/collections';
@@ -11,12 +11,14 @@ import { Router } from '@angular/router';
   templateUrl: './collection-list.component.html',
   styleUrls: ['./collection-list.component.css']
 })
-export class CollectionListComponent implements OnInit {
+export class CollectionListComponent implements OnInit, OnDestroy {
 
   closeResult: string;
   collections: any[];
 
   selectedCollection: string;
+  private subscriptionListCollections: any;
+  private subscriptionGetCollectionByName: any;
 
   constructor(
     private modalService: NgbModal,
@@ -27,6 +29,16 @@ export class CollectionListComponent implements OnInit {
   ngOnInit() {
     window.addEventListener('change', this.searchCollection.bind(this));
     this.getAllCollections();
+  }
+
+  ngOnDestroy() {
+
+    if (this.subscriptionListCollections !== undefined && this.subscriptionListCollections !== null) {
+      this.subscriptionListCollections.unsubscribe();
+    }
+    if (this.subscriptionGetCollectionByName !== undefined && this.subscriptionGetCollectionByName !== null) {
+      this.subscriptionGetCollectionByName.unsubscribe();
+    }
   }
 
   open(content) {
@@ -54,7 +66,7 @@ export class CollectionListComponent implements OnInit {
   }
 
   getAllCollections() {
-    this.collectionsService.listCollections().subscribe(
+    this.subscriptionListCollections  = this.collectionsService.listCollections().subscribe(
       collections => {
         this.collections = collections;
       }
@@ -89,7 +101,7 @@ export class CollectionListComponent implements OnInit {
   }
 
   getCollection(name) {
-    this.collectionsService.searchCollectionByName(name).subscribe(
+    this.subscriptionGetCollectionByName = this.collectionsService.searchCollectionByName(name).subscribe(
       collections => {
         this.collections = collections;
       }

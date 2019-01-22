@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PokeListService } from '../../services/poke-list.service';
 import { Router } from '@angular/router';
 import { MessagesService } from 'src/app/alerts/services/messages.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 
 @Component({
@@ -11,13 +12,14 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./poke-detail.component.css']
 })
 
-export class PokeDetailComponent implements OnInit {
+export class PokeDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private pokeListService: PokeListService,
     private router: Router,
     private modalService: NgbModal,
-    private alertMessage: MessagesService) { }
+    private alertMessage: MessagesService,
+    private authService: AuthService) { }
 
   pokemonName: string;
   _poke: any;
@@ -25,16 +27,28 @@ export class PokeDetailComponent implements OnInit {
   key: string;
 
   closeResult: string;
+  private subscription: any;
+  private subscriptionPoke: any;
 
   ngOnInit() {
 
     this.pokemonName = this.router.url.split('/').pop(); // this.router.currentUrlTree.root.children.primary.segments[3].path;
-    this.pokeListService.getPokemon(this.pokemonName).subscribe(
+    this.subscriptionPoke = this.pokeListService.getPokemon(this.pokemonName).subscribe(
       pokemon => {
         this._poke = pokemon;
         this.isFavorite(pokemon);
       }
     );
+  }
+
+  ngOnDestroy() {
+    if (this.subscription !== undefined && this.subscription !== null) {
+      this.subscription.unsubscribe();
+    }
+
+    if (this.subscriptionPoke !== undefined && this.subscriptionPoke !== null) {
+      this.subscriptionPoke.unsubscribe();
+    }
   }
 
   addFavorite(pokemon) {
@@ -58,7 +72,7 @@ export class PokeDetailComponent implements OnInit {
   }
 
   isFavorite(pokemon) {
-    this.pokeListService.searchPokemonFavorite(pokemon).subscribe(
+    this.subscription = this.pokeListService.searchPokemonFavorite(pokemon).subscribe(
       poke => {
         if (poke.length > 0) {
             pokemon.isFavorite = true;

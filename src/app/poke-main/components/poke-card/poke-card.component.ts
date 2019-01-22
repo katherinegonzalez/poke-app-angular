@@ -1,21 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { IPokemon } from '../../models/interfaces/pokemon';
 import {PokeListService} from '../../services/poke-list.service';
 import { MessagesService } from 'src/app/alerts/services/messages.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-poke-card',
   templateUrl: './poke-card.component.html',
   styleUrls: ['./poke-card.component.css']
 })
-export class PokeCardComponent implements OnInit {
+export class PokeCardComponent implements OnInit, OnDestroy {
 
   _pokeResult: IPokemon;
   _poke: any;
   _favorite: Boolean = false;
   key: string;
+  private subscription: any;
+  private subscriptionPoke: any;
 
   closeResult: string;
 
@@ -24,11 +26,9 @@ export class PokeCardComponent implements OnInit {
     return this._pokeResult;
   }
   set poke(result: IPokemon) {
-    this.pokeService.getPokemon(result.name).subscribe(
+    this.subscriptionPoke = this.pokeService.getPokemon(result.name).subscribe(
       pokemon => {
-        this.isFavorite(pokemon);
-        // console.log(pokemon);
-        // this._poke = pokemon;
+          this.isFavorite(pokemon);
       }
     );
   }
@@ -36,10 +36,21 @@ export class PokeCardComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private pokeService: PokeListService,
-    private alertMessage: MessagesService) { }
+    private alertMessage: MessagesService,
+    private authService: AuthService) { }
 
   ngOnInit() {
 
+  }
+
+  ngOnDestroy() {
+    if (this.subscription !== undefined && this.subscription !== null) {
+      this.subscription.unsubscribe();
+    }
+
+    if (this.subscriptionPoke !== undefined && this.subscriptionPoke !== null) {
+      this.subscriptionPoke.unsubscribe();
+    }
   }
 
   addFavorite(pokemon) {
@@ -63,9 +74,8 @@ export class PokeCardComponent implements OnInit {
   }
 
   isFavorite(pokemon) {
-    this.pokeService.searchPokemonFavorite(pokemon).subscribe(
+    this.subscription = this.pokeService.searchPokemonFavorite(pokemon).subscribe(
       poke => {
-        console.log(poke);
         if (poke.length > 0) {
             pokemon.isFavorite = true;
             pokemon.key = poke[0].key;
