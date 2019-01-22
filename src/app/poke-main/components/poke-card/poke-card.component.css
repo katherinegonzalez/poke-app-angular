@@ -47,44 +47,6 @@ a{
   font-size: 10px;
 }
 
-.type-card {
-  border-radius: 10px;
-  display: inline-block;
-  font-size: 10px;
-  margin-left: 0 0 5px 0;
-  padding: 0 5px;
-  text-align: center;
-
-}
-
-.type-card.normal {
-  background-color: yellowgreen;
-}
-
-.type-card.poison {
-  background-color: lightpink;
-}
-
-.type-card.grass {
-  background-color: lightgreen;
-}
-
-.type-card.fire {
-  background-color: orange;
-}
-
-.type-card.water {
-  background-color: lightskyblue;
-}
-
-.type-card.flying {
-  background-color: lightseagreen;
-}
-
-.type-card.bug {
-  background-color: coral;
-}
-
 .card-pokemon-abilities {
   text-align: center;
 }
