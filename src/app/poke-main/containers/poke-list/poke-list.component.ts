@@ -43,7 +43,6 @@ export class PokeListComponent implements OnInit {
   getPokemonSearched (value: string) {
     this.pokeService.getPokemon(value).subscribe(
       pokemon => {
-        console.log(pokemon);
         if (pokemon) {
           const pokeResult = [];
           const poke = {

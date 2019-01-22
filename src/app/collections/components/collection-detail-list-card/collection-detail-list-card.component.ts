@@ -1,19 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { IPokemon } from '../../../poke-main/models/interfaces/pokemon';
 import { PokeListService } from '../../../poke-main/services/poke-list.service';
 import { MessagesService } from 'src/app/alerts/services/messages.service';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-collection-detail-list-card',
   templateUrl: './collection-detail-list-card.component.html',
   styleUrls: ['./collection-detail-list-card.component.css']
 })
-export class CollectionDetailListCardComponent implements OnInit {
+export class CollectionDetailListCardComponent implements OnInit, OnDestroy {
 
   _pokeResult: string;
   _poke: any;
   _favorite: Boolean = false;
   key: string;
+  private subscription: any;
 
   @Input()
   get poke(): string {
@@ -23,18 +25,23 @@ export class CollectionDetailListCardComponent implements OnInit {
     this.pokeService.getPokemon(result).subscribe(
       pokemon => {
         this.isFavorite(pokemon);
-        // console.log(pokemon);
-        // this._poke = pokemon;
       }
     );
   }
 
   constructor(
     private pokeService: PokeListService,
-    private alertMessage: MessagesService) { }
+    private alertMessage: MessagesService,
+    private authService: AuthService) { }
 
   ngOnInit() {
 
+  }
+
+  ngOnDestroy() {
+    if (this.subscription !== undefined && this.subscription !== null) {
+      this.subscription.unsubscribe();
+    }
   }
 
   addFavorite(pokemon) {
@@ -58,7 +65,7 @@ export class CollectionDetailListCardComponent implements OnInit {
   }
 
   isFavorite(pokemon) {
-    this.pokeService.searchPokemonFavorite(pokemon).subscribe(
+    this.subscription = this.pokeService.searchPokemonFavorite(pokemon).subscribe(
       poke => {
         if (poke.length > 0) {
             pokemon.isFavorite = true;

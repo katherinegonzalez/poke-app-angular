@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IPokeList } from 'src/app/poke-main/models/interfaces/poke-list';
 import { PokeListService } from '../../../poke-main/services/poke-list.service';
 import {IPokemon} from '../../../poke-main/models/interfaces/pokemon';
@@ -11,10 +11,13 @@ import { Router } from '@angular/router';
   templateUrl: './favorites-list.component.html',
   styleUrls: ['./favorites-list.component.css']
 })
-export class FavoritesListComponent implements OnInit {
+export class FavoritesListComponent implements OnInit, OnDestroy {
 
   pokemons: any[];
   message: string;
+  private subscribeListFavorites: any;
+  private subscribeSearchFavorites: any;
+  private subscribeAuth: any;
 
   constructor(
     private pokeListService: PokeListService,
@@ -29,29 +32,45 @@ export class FavoritesListComponent implements OnInit {
     this.getPokemonsFavorites();
   }
 
+  ngOnDestroy() {
+    if (this.subscribeListFavorites !== undefined && this.subscribeListFavorites !== null) {
+      this.subscribeListFavorites.unsubscribe();
+    }
+
+    if (this.subscribeSearchFavorites !== undefined && this.subscribeSearchFavorites !== null) {
+      this.subscribeSearchFavorites.unsubscribe();
+    }
+
+    if (this.subscribeAuth !== undefined && this.subscribeAuth !== null) {
+      this.subscribeAuth.unsubscribe();
+    }
+  }
+
   getPokemonsFavorites() {
-    this.authService.profileUser()
+    this.subscribeAuth = this.authService.profileUser()
     .subscribe(
       user => {
-        this.favoriteService.listFavorites(user).subscribe(
-          list => {
-            if (list.length > 0) {
-              this.pokemons = list;
-            } else {
-              this.pokemons = [];
-              this.message = 'No hay favoritos para mostrar';
+        if (user !== null) {
+          this.subscribeListFavorites = this.favoriteService.listFavorites(user).subscribe(
+            list => {
+              if (list.length > 0) {
+                this.pokemons = list;
+              } else {
+                this.pokemons = [];
+                this.message = 'No hay favoritos para mostrar';
+              }
             }
-          }
-        );
+          );
+        }
       }
     );
   }
 
   getPokemonFavoriteSearched(namePokemon: string) {
-    this.authService.profileUser()
+    this.subscribeAuth = this.authService.profileUser()
     .subscribe(
       user => {
-        this.favoriteService.searchFavorites(user, namePokemon).subscribe(
+        this.subscribeSearchFavorites = this.favoriteService.searchFavorites(user, namePokemon).subscribe(
           list => {
             if (list.length > 0) {
               this.pokemons = list.filter(function (el) {

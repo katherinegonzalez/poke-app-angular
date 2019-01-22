@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CollectionsService } from '../../services/collections.service';
 import {Router} from '@angular/router';
 
@@ -7,13 +7,15 @@ import {Router} from '@angular/router';
   templateUrl: './collection-detail.component.html',
   styleUrls: ['./collection-detail.component.css']
 })
-export class CollectionDetailComponent implements OnInit {
+export class CollectionDetailComponent implements OnInit, OnDestroy {
 
   pokemons: any[];
   collectionKey: string;
   collectionName: string;
   collectionDescription: string;
   message: string;
+  private subscriptionGetCollection: any;
+  private subscriptionGetPokemonCollection: any;
 
   constructor(
     private collectionsService: CollectionsService,
@@ -26,8 +28,18 @@ export class CollectionDetailComponent implements OnInit {
     this.getCollection(this.collectionKey);
   }
 
+  ngOnDestroy() {
+
+    if (this.subscriptionGetCollection !== undefined && this.subscriptionGetCollection !== null) {
+      this.subscriptionGetCollection.unsubscribe();
+    }
+    if (this.subscriptionGetPokemonCollection !== undefined && this.subscriptionGetPokemonCollection !== null) {
+      this.subscriptionGetPokemonCollection.unsubscribe();
+    }
+  }
+
   getCollection(key) {
-    this.collectionsService.searchCollection(key).subscribe(
+    this.subscriptionGetCollection = this.collectionsService.searchCollection(key).subscribe(
       collection => {
         if (collection.length > 0 ) {
           this.pokemons = collection[0].data.pokemonsCollection;
@@ -44,7 +56,7 @@ export class CollectionDetailComponent implements OnInit {
   }
 
   getPokemonCollectionSearched(key, namePokemon) {
-    this.collectionsService.searchPokemonOfCollection(key, namePokemon).subscribe(
+    this.subscriptionGetPokemonCollection = this.collectionsService.searchPokemonOfCollection(key, namePokemon).subscribe(
       collection => {
         if (collection.length > 0 ) {
           this.pokemons = collection[0].data.pokemonsCollection;
