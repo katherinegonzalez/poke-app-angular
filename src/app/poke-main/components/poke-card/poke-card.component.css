@@ -5,11 +5,14 @@ a{
 .card-pokemon {
   border: none;
   margin-bottom: 40px;
+  min-height: 377px;
+  transition: all .2s ease-in-out;
 }
 
 .card-pokemon:hover {
   background-color: yellow;
   box-shadow: yellow;
+  transform: scale(1.05);
 }
 
 .card-pokemon:hover .img-card-pokemon {
