@@ -97,6 +97,13 @@ div.user-info {
   width: 400px;
 }
 
+.main-menu > li:hover {
+  background-color: lightseagreen;
+}
+
+.main-menu > li:hover > a {
+  color: lightgray;
+}
 
 /* Utils */
 .type-card {
@@ -106,6 +113,7 @@ div.user-info {
   margin-left: 0 0 5px 0;
   padding: 0 5px;
   text-align: center;
+  cursor: pointer;
 }
 
 .type-card.normal {
