@@ -5,10 +5,17 @@
 <div class="row">
   <div class="col-6">
       <div class="pokemon-info pxl-border">
-        Experiencia: {{_poke?.base_experience}} <br />
+        Experiencia: {{_poke?.base_experience}} xp <br />
         Altura: {{_poke?.height}} <br />
-        Peso: {{_poke?.weight}} <br />
-        Tipo: {{_poke?.types[0].type.name}} <br />
+        Peso: {{_poke?.weight}} Kg <br />
+        Tipo: <br />
+        <div *ngFor = "let type of _poke?.types" class="type-card">
+          <div class="type-card {{type?.type.name}}">
+              <span >{{type?.type.name}}</span>
+          </div>
+        </div>
+        <br />
+
         Held items: <div *ngFor="let heldItem of _poke?.held_items">heldItem?.item?.name</div>
         <br />
         Habilidades: <br />

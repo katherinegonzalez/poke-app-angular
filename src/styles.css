@@ -96,3 +96,50 @@ div.user-info {
 .book .book-image img {
   width: 400px;
 }
+
+.main-menu > li:hover {
+  background-color: lightseagreen;
+}
+
+.main-menu > li:hover > a {
+  color: lightgray;
+}
+
+/* Utils */
+.type-card {
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 10px;
+  margin-left: 0 0 5px 0;
+  padding: 0 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.type-card.normal {
+  background-color: yellowgreen;
+}
+
+.type-card.poison {
+  background-color: lightpink;
+}
+
+.type-card.grass {
+  background-color: lightgreen;
+}
+
+.type-card.fire {
+  background-color: orange;
+}
+
+.type-card.water {
+  background-color: lightskyblue;
+}
+
+.type-card.flying {
+  background-color: lightseagreen;
+}
+
+.type-card.bug {
+  background-color: coral;
+}
