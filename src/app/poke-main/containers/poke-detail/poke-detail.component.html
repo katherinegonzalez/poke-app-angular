@@ -5,10 +5,10 @@
 <div class="row">
   <div class="col-6">
       <div class="pokemon-info pxl-border">
-        Experiencia: {{_poke?.base_experience}} xp <br />
-        Altura: {{_poke?.height}} <br />
-        Peso: {{_poke?.weight}} Kg <br />
-        Tipo: <br />
+        <strong>Experiencia:</strong> {{_poke?.base_experience}} xp <br />
+        <strong>Altura:</strong> {{_poke?.height}} <br />
+        <strong>Peso:</strong> {{_poke?.weight}} Kg <br />
+        <strong>Tipo:</strong> <br />
         <div *ngFor = "let type of _poke?.types" class="type-card">
           <div class="type-card {{type?.type.name}}">
               <span >{{type?.type.name}}</span>
@@ -16,9 +16,9 @@
         </div>
         <br />
 
-        Held items: <div *ngFor="let heldItem of _poke?.held_items">heldItem?.item?.name</div>
+        <strong>Held items:</strong> <div *ngFor="let heldItem of _poke?.held_items">heldItem?.item?.name</div>
         <br />
-        Habilidades: <br />
+        <strong>Habilidades: </strong><br />
         <div class="card-pokemon-abilities">
             <div *ngFor = "let ability of _poke?.abilities" class="ability-card">
               {{ability.ability?.name}}
@@ -28,7 +28,10 @@
   </div>
   <div class="col-6">
       <div class="card-pokemon">
+          <div *ngIf ="_poke == null" class="preloader"></div>
+
           <img class="img-pokemon" src="{{_poke?.sprites.front_default}}">
+
           <div class="offset-9">
             <div class="row pokemon-icons">
                 <div class="pokemon-icon favorite" *ngIf="_poke?.isFavorite === true">
