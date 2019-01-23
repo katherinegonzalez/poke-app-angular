@@ -1,16 +1,41 @@
-.card-pokemon{
-  margin-bottom: 20px;
-  border-radius: 4.25rem
-}
-
 a{
   text-decoration: none;
 }
 
+.card-pokemon {
+  border: none;
+  margin-bottom: 40px;
+  min-height: 377px;
+  transition: all .2s ease-in-out;
+}
+
+.card-pokemon:hover {
+  background-color: yellow;
+  box-shadow: yellow;
+  transform: scale(1.05);
+}
+
+.card-pokemon:hover .img-card-pokemon {
+  background-color: white;
+}
+
+.pxl-border {
+  background: cornflowerblue;
+  box-shadow: 0 -6px 0 -2px cornflowerblue, 0 6px 0 -2px cornflowerblue, 0 -12px 0 -4px cornflowerblue, 0 12px 0 -4px cornflowerblue, 0 -18px 0 -8px cornflowerblue, 0 18px 0 -8px cornflowerblue, 0 -24px 0 -12px cornflowerblue, 0 24px 0 -12px cornflowerblue, -2px 0 0 0 black, 2px 0 0 0 black, 0 -4px 0 0 black, 0 4px 0 0 black, 0 -10px 0 -2px black, 0 10px 0 -2px black, 0 -14px 0 -4px black, 0 14px 0 -4px black, 0 -20px 0 -8px black, 0 20px 0 -8px black, 0 -26px 0 -12px black, 0 26px 0 -12px black, -4px 0 0 0 white, 4px 0 0 0 white, 0 -2px 0 2px white, 0 2px 0 2px white, 0 -8px 0 0px white, 0 8px 0 0px white, 0 -12px 0 -2px white, 0 12px 0 -2px white, 0 -16px 0 -4px white, 0 16px 0 -4px white, 0 -22px 0 -8px white, 0 22px 0 -8px white, 0 -28px 0 -12px white, 0 28px 0 -12px white, -6px 0 0 0 black, 6px 0 0 0 black, 0 0 0 4px black, 0 -6px 0 2px black, 0 6px 0 2px black, 0 -10px 0 0 black, 0 10px 0 0 black, 0 -14px 0 -2px black, 0 14px 0 -2px black, 0 -18px 0 -4px black, 0 18px 0 -4px black, 0 -24px 0 -8px black, 0 24px 0 -8px black, 0 -30px 0 -12px black, 0 30px 0 -12px black;
+}
+
+.pxl-border:hover {
+  box-shadow: 0 -6px 0 -2px yellow, 0 6px 0 -2px yellow, 0 -12px 0 -4px yellow, 0 12px 0 -4px yellow, 0 -18px 0 -8px yellow, 0 18px 0 -8px yellow, 0 -24px 0 -12px yellow, 0 24px 0 -12px yellow, -2px 0 0 0 black, 2px 0 0 0 black, 0 -4px 0 0 black, 0 4px 0 0 black, 0 -10px 0 -2px black, 0 10px 0 -2px black, 0 -14px 0 -4px black, 0 14px 0 -4px black, 0 -20px 0 -8px black, 0 20px 0 -8px black, 0 -26px 0 -12px black, 0 26px 0 -12px black, -4px 0 0 0 white, 4px 0 0 0 white, 0 -2px 0 2px white, 0 2px 0 2px white, 0 -8px 0 0px white, 0 8px 0 0px white, 0 -12px 0 -2px white, 0 12px 0 -2px white, 0 -16px 0 -4px white, 0 16px 0 -4px white, 0 -22px 0 -8px white, 0 22px 0 -8px white, 0 -28px 0 -12px white, 0 28px 0 -12px white, -6px 0 0 0 black, 6px 0 0 0 black, 0 0 0 4px black, 0 -6px 0 2px black, 0 6px 0 2px black, 0 -10px 0 0 black, 0 10px 0 0 black, 0 -14px 0 -2px black, 0 14px 0 -2px black, 0 -18px 0 -4px black, 0 18px 0 -4px black, 0 -24px 0 -8px black, 0 24px 0 -8px black, 0 -30px 0 -12px black, 0 30px 0 -12px black;
+}
+
 .img-card-pokemon{
   background-color: #e2e0e0;
-  border-radius: 4.25rem 4.25rem 0 0;
-  margin: 5px 5px 0px 5px;
+  border-radius: 3.25rem 3.25rem 0 0;
+  margin: 5px 5px 0px;
+}
+
+.img-card-pokemon > img {
+  image-rendering: pixelated;
 }
 
 .ability-card{
@@ -25,7 +50,7 @@ a{
   font-size: 10px;
 }
 
-.card-pokemon-abilities{
+.card-pokemon-abilities {
   text-align: center;
 }
 
@@ -47,14 +72,13 @@ a{
   padding-left: 0px;
   padding-right: 0px;
   text-align: right;
+  margin-left: 2px;
+  margin-right: 0px;
 }
 .card-pokemon-icon.favorite{
-  background-image: url("../../../../assets/img/favorite_border_black.png");
-  background-repeat: no-repeat;
+  margin-right: 10px;
 }
 
-.card-pokemon-icon.collection{
-  background-image: url("../../../../assets/img/pokeball.png");
-  background-repeat: no-repeat;
-}
+
+
 

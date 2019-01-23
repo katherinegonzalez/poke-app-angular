@@ -5,11 +5,15 @@ import { FavoritePokeCardComponent } from './components/favorite-poke-card/favor
 import { RouterModule } from '@angular/router';
 import { routes } from './routes.favorites';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FavoritesAddToCollectionComponent } from './components/favorites-add-to-collection/favorites-add-to-collection.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [FavoritesListComponent, FavoritePokeCardComponent],
+  declarations: [FavoritesListComponent, FavoritePokeCardComponent, FavoritesAddToCollectionComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     NgxPaginationModule,
     RouterModule.forChild(routes)
   ]

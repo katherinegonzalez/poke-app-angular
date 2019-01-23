@@ -1,30 +1,56 @@
-
-<div class="card card-pokemon">
-    <a *ngIf ="_poke" [routerLink]="['../../pokemons/detail', _poke?.data?.name]">
-      <div class="img-card-pokemon">
-          <img class="card-img-top" src="{{_poke?.data?.sprites.front_default}}" alt="Card image cap">
-      </div>
-    </a>
-
-    <div class="card-body">
-      <div class="row">
-          <div class="col-8">
-              <h5 class="card-title card-title-pokemon align-middle">{{_poke?.data?.name}}</h5>
-          </div>
-
-          <div class="col-4 card-pokemon-icons">
-
-              <img class="card-pokemon-icon" (click)="removeFavorite(_poke)" src="../../../../assets/img/favorite_black.png" alt="añadir a favorito">
-              <img class="card-pokemon-icon"src="../../../../assets/img/pokeball.png" alt="añadir a colección">
+<div class="card card-pokemon pxl-border">
+  <div>
+      <div *ngFor = "let type of _poke?.types" class="type-card">
+          <div class="type-card {{type?.type.name}}">
+              <span >{{type?.type.name}}</span>
           </div>
       </div>
+  </div>
+  <a *ngIf ="_poke" [routerLink]="['../../pokemons/detail', _poke?.name]">
+    <div class="img-card-pokemon">
+        <img class="card-img-top" src="{{_poke?.data?.sprites.front_default}}" alt="Card image cap">
+    </div>
+  </a>
 
-      <div class="card-pokemon-abilities">
-        <div *ngFor = "let ability of _poke?.data?.abilities" class="ability-card">
-          {{ability.ability?.name}}
+  <div class="card-body">
+    <div class="row">
+        <div class="col-8">
+            <h5 class="card-title card-title-pokemon align-middle">{{_poke?.name}}</h5>
         </div>
+
+        <div class="row card-pokemon-icons">
+            <div class="card-pokemon-icon favorite">
+                <img  (click)="removeFavorite(_poke)" src="../../../../assets/img/favorite_black.png" alt="añadir a favorito">
+            </div>
+            <div class="card-pokemon-icon">
+                <img (click)="open(contentAddToCollection)" src="../../../../assets/img/pokeball.png" alt="añadir a colección">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card-pokemon-abilities">
+      <div *ngFor = "let ability of _poke?.abilities" class="ability-card pixel-bullet">
+        {{ability.ability?.name}}
       </div>
-      </div>
+    </div>
+    </div>
 </div>
+
+<ng-template #contentAddToCollection let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Agregar pokemón a una Colección</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <app-favorites-add-to-collection [selectedPokemon]="_poke?.name" (closeModal)= "modal.close('Close click')" ></app-favorites-add-to-collection>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>
+
 
 

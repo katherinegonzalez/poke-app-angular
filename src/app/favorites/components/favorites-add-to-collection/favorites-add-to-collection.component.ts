@@ -4,11 +4,11 @@ import { CollectionsService } from 'src/app/collections/services/collections.ser
 import { MessagesService } from 'src/app/alerts/services/messages.service';
 
 @Component({
-  selector: 'app-poke-add-to-collection',
-  templateUrl: './poke-add-to-collection.component.html',
-  styleUrls: ['./poke-add-to-collection.component.css']
+  selector: 'app-favorites-add-to-collection',
+  templateUrl: './favorites-add-to-collection.component.html',
+  styleUrls: ['./favorites-add-to-collection.component.css']
 })
-export class PokeAddToCollectionComponent implements OnInit {
+export class FavoritesAddToCollectionComponent implements OnInit {
 
   addTocollectionForm = this.formBuilder.group({
     collectionVal: ['', Validators.required],
@@ -67,5 +67,7 @@ export class PokeAddToCollectionComponent implements OnInit {
       }, (error) => {
         this.alertMessage.message({msg: 'No fue posible agregar a ' + valueCollection.namePokemon + ' a la colección', type: 'error'});
       });
+
   }
+
 }

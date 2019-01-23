@@ -93,7 +93,6 @@ export class CollectionCreateComponent implements OnInit {
   }
 
   editCollection() {
-    console.log(this.collectionForm.value);
     this.collecionsService.editCollection(this.collection.key, this.collectionForm.value)
       .then(_ => {
         this.alertMessage.message({msg: 'La colección ' + this.collectionForm.value.nameCollection + ' ha sido editada exitosamente',

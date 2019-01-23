@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {PokeListService} from '../../../poke-main/services/poke-list.service';
 import { IPokemon } from '../../../poke-main/models/interfaces/pokemon';
 import { MessagesService } from 'src/app/alerts/services/messages.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 
 @Component({
@@ -14,6 +16,7 @@ export class FavoritePokeCardComponent implements OnInit {
 
   _pokeResult: IPokemon;
   _poke: any;
+  closeResult: string;
 
   @Input()
   get poke(): any {
@@ -24,6 +27,7 @@ export class FavoritePokeCardComponent implements OnInit {
   }
 
   constructor(
+    private modalService: NgbModal,
     private pokeService: PokeListService,
     private alertMessage: MessagesService) { }
 
@@ -37,6 +41,24 @@ export class FavoritePokeCardComponent implements OnInit {
     }, (error) => {
       this.alertMessage.message({msg: 'No fue posible quitar a ' + pokemon.data.name + ' de favoritos', type: 'error'});
     });
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'model-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismossed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 }
