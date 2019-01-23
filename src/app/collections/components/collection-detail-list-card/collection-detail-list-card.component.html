@@ -1,14 +1,26 @@
 
-<div class="card card-pokemon">
+<div class="card card-pokemon pxl-border">
+    <div>
+        <div *ngFor = "let type of _poke?.types" class="type-card">
+            <div class="type-card {{type?.type.name}}">
+                <span >{{type?.type.name}}</span>
+            </div>
+        </div>
+    </div>
+
     <a *ngIf ="_poke" [routerLink]="['../detail', _poke?.name]">
       <div class="img-card-pokemon">
           <img class="card-img-top" src="{{_poke?.sprites.front_default}}" alt="Card image cap">
       </div>
     </a>
 
+    <a *ngIf ="_poke == null">
+      <div class="preloader"></div>
+    </a>
+
     <div class="card-body">
       <div class="row">
-          <div class="col-8">
+          <div class="col-10 text-left">
               <h5 class="card-title card-title-pokemon align-middle">{{_poke?.name}}</h5>
           </div>
 
@@ -23,7 +35,6 @@
                   <img src="../../../../assets/img/pokeball.png" alt="añadir a colección">
               </div>
           </div>
-
 
       </div>
 
