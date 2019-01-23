@@ -28,7 +28,10 @@
   </div>
   <div class="col-6">
       <div class="card-pokemon">
+          <div *ngIf ="_poke == null" class="preloader"></div>
+
           <img class="img-pokemon" src="{{_poke?.sprites.front_default}}">
+
           <div class="offset-9">
             <div class="row pokemon-icons">
                 <div class="pokemon-icon favorite" *ngIf="_poke?.isFavorite === true">
