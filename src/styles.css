@@ -159,6 +159,14 @@ div.user-info {
   background-color: orangered;
 }
 
+.type-card.ground {
+  background-color: tan;
+}
+
+.type-card.rock {
+  background-color: sienna;
+}
+
 /* Cards */
 
 a{
