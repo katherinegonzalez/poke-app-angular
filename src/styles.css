@@ -167,6 +167,10 @@ div.user-info {
   background-color: sienna;
 }
 
+.type-card.electric {
+  background-color: yellow;
+}
+
 /* Cards */
 
 a{
