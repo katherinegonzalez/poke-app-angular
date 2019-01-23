@@ -189,13 +189,11 @@ a{
 .ability-card{
   background-color: orange;
   border-radius: 10px;
-  text-align: center;
   display: inline-block;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 5px;
-  margin-bottom: 5px;
   font-size: 10px;
+  margin: 0 2px;
+  padding: 0 5px;
+  text-align: center;
 }
 
 .card-pokemon-abilities {
@@ -203,33 +201,29 @@ a{
 }
 
 .card-title-pokemon{
+  color: #000;
   text-transform: capitalize;
-  color: #000000;
 }
+
 .card-title-pokemon:hover{
   text-decoration: none;
 }
 
 .card-pokemon-icon{
+  cursor: pointer;
   height: 30px;
   width: 30px;
-  cursor: pointer;
 }
-
 .card-pokemon-icons{
+  margin-left: 2px;
+  margin-right: 0px;
   padding-left: 0px;
   padding-right: 0px;
   text-align: right;
-  margin-left: 2px;
-  margin-right: 0px;
 }
 .card-pokemon-icon.favorite{
   margin-right: 10px;
 }
-
-
-
-
 
 .preloader {
   background-image: url('/assets/img/preloader.gif');
