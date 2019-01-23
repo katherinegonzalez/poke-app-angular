@@ -131,6 +131,10 @@ div.user-info {
   background-color: orange;
 }
 
+.type-card.ice {
+  background-color: lightsteelblue;
+}
+
 .type-card.water {
   background-color: lightskyblue;
 }
@@ -143,6 +147,17 @@ div.user-info {
   background-color: coral;
 }
 
+.type-card.psychic {
+  background-color: violet;
+}
+
+.type-card.ghost {
+  background-color: gray;
+}
+
+.type-card.fighting {
+  background-color: orangered;
+}
 
 /* Cards */
 
