@@ -3,10 +3,11 @@
     <h2>{{collectionName}}</h2>
     <hr />
 </div>
+
 <div class="collection-description">
   <p>{{collectionDescription}}</p>
 </div>
-
+<br />
 <div class="row" id="books">
     <div *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: 3, currentPage: p }" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
       <app-collection-detail-list-card [poke]="pokemon"></app-collection-detail-list-card>
