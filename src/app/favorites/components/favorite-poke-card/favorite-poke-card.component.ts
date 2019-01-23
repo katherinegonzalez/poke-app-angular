@@ -32,6 +32,7 @@ export class FavoritePokeCardComponent implements OnInit {
     private alertMessage: MessagesService) { }
 
   ngOnInit() {
+    console.log(this._poke );
   }
 
   removeFavorite(pokemon) {

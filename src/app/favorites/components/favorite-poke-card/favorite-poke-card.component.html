@@ -1,12 +1,12 @@
 <div class="card card-pokemon pxl-border">
   <div>
-      <div *ngFor = "let type of _poke?.types" class="type-card">
+      <div *ngFor = "let type of _poke?.data?.types" class="type-card">
           <div class="type-card {{type?.type.name}}">
               <span >{{type?.type.name}}</span>
           </div>
       </div>
   </div>
-  <a *ngIf ="_poke" [routerLink]="['../../pokemons/detail', _poke?.name]">
+  <a *ngIf ="_poke" [routerLink]="['../../pokemons/detail', _poke?.data?.name]">
     <div class="img-card-pokemon">
         <img class="card-img-top" src="{{_poke?.data?.sprites.front_default}}" alt="Card image cap">
     </div>
@@ -15,7 +15,7 @@
   <div class="card-body">
     <div class="row">
         <div class="col-8">
-            <h5 class="card-title card-title-pokemon align-middle">{{_poke?.name}}</h5>
+            <h5 class="card-title card-title-pokemon align-middle">{{_poke?.data?.name}}</h5>
         </div>
 
         <div class="row card-pokemon-icons">
@@ -30,7 +30,7 @@
     </div>
 
     <div class="card-pokemon-abilities">
-      <div *ngFor = "let ability of _poke?.abilities" class="ability-card pixel-bullet">
+      <div *ngFor = "let ability of _poke?.data?.abilities" class="ability-card pixel-bullet">
         {{ability.ability?.name}}
       </div>
     </div>
@@ -45,7 +45,7 @@
     </button>
   </div>
   <div class="modal-body">
-      <app-favorites-add-to-collection [selectedPokemon]="_poke?.name" (closeModal)= "modal.close('Close click')" ></app-favorites-add-to-collection>
+      <app-favorites-add-to-collection [selectedPokemon]="_poke?.data?.name" (closeModal)= "modal.close('Close click')" ></app-favorites-add-to-collection>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
